@@ -71,7 +71,8 @@ def topView(root):
 
     queue = []
     hashtable = {}
-    hashtable[0] = set(str(root.info))
+    hashtable[0] = set()
+    hashtable[0].add(str(root.info))
     queue.append(root)
     
     while len(queue) > 0:
@@ -85,30 +86,32 @@ def topView(root):
         if current_node.left != None:
             leftHd = Hd - 1
             if leftHd not in hashtable:
-                hashtable[leftHd] = set(str(current_node.left.info))
-            else:
-                hashtable[leftHd].add(str(current_node.left.info))
+                hashtable[leftHd] = set()
+            hashtable[leftHd].add(str(current_node.left.info))
             queue.append(current_node.left)
 
         if current_node.right != None:
             rightHd = Hd + 1
             if rightHd not in hashtable:
-                hashtable[rightHd] = set(str(current_node.right.info))
-            else:
-                hashtable[rightHd].add(str(current_node.right.info))
+                hashtable[rightHd] = set()
+            hashtable[rightHd].add(str(current_node.right.info))
             queue.append(current_node.right)
     
     string_variable = ''
+    print(hashtable)
+    print(level_array)
     keys = list(hashtable.keys())
     keys.sort()
     for key in keys:
         if len(hashtable[key]) > 1:
             lowest_index = float('inf')
             for sub_key in hashtable[key]:
+                print('sub key', sub_key)
                 for index in range(len(level_array)):
                     if str(level_array[index]) == sub_key:
                         if lowest_index > index:
-                            lowest_index = index 
+                            lowest_index = index
+            lowest_index = int(lowest_index)
 
             string_variable += str(level_array[lowest_index]) + ' '
 
@@ -118,4 +121,15 @@ def topView(root):
     print(string_variable)
 
 tree = BinarySearchTree()
-tree.create()
+
+test_array = [37, 23, 108, 59, 86, 64, 94, 14, 105, 17, 111 ,65 ,55, 31, 79, 97, 78 ,25, 50, 22 ,66 ,46, 104, 98 ,81, 90, 68, 40 ,103, 77, 74, 18, 69, 82 ,41, 4 ,48 ]
+tree.create(test_array[0])
+
+for value in test_array[1:]:
+    tree.create(value)
+
+topView(tree.root)
+
+
+
+# 37 23 108 59 86 64 94 14 105 17 111 65 55 31 79 97 78 25 50 22 66 46 104 98 81 90 68 40 103 77 74 18 69 82 41 4 48 83 67 6 2 95 54 100 99 84 34 88 27 72 32 62 9 56 109 1
