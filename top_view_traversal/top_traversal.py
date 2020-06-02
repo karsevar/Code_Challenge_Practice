@@ -97,6 +97,25 @@ def topView(root):
             else:
                 hashtable[rightHd].add(str(current_node.right.info))
             queue.append(current_node.right)
+    
+    string_variable = ''
+    keys = list(hashtable.keys())
+    keys.sort()
+    for key in keys:
+        if len(hashtable[key]) > 1:
+            lowest_index = float('inf')
+            for sub_key in hashtable[key]:
+                for index in range(len(level_array)):
+                    if str(level_array[index]) == sub_key:
+                        if lowest_index > index:
+                            lowest_index = index 
 
-    print(level_array)
-    print(hashtable)
+            string_variable += str(level_array[lowest_index]) + ' '
+
+        else:
+            string_variable += hashtable[key].pop() + ' '
+
+    print(string_variable)
+
+tree = BinarySearchTree()
+tree.create()
