@@ -1,3 +1,5 @@
+import sys
+
 class Node:
     def __init__(self, val, current_max):
         self.val = val
