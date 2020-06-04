@@ -24,6 +24,9 @@ def isBalanced(s):
         if character in opening_brackets:
             stack.append(character)
         elif character in bracket_dict:
+            if len(stack) == 0:
+                return 'NO'
+            
             opening_bracket = stack.pop()
             if opening_bracket != bracket_dict[character]:
                 return 'NO'
