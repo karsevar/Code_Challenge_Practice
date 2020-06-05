@@ -32,5 +32,3 @@ Each challenge is separated in their own individual files complete with the solu
 | Inserting a Node into a Sorted Doubly Linked List | https://www.hackerrank.com/challenges/insert-a-node-into-a-sorted-doubly-linked-list/problem | O(n)            | O(1)                                   | Easy       |
 | Balanced Brackets                                 | https://www.hackerrank.com/challenges/balanced-brackets/problem                              | O(n)            | O(n)                                   | Medium     |
 | Plus Minus                                        | https://www.hackerrank.com/challenges/plus-minus/problem                                     | O(n)            | O(1)                                   | Easy       |  |
-
-returns array of clients that logged in health coach is charged with
