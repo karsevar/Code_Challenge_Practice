@@ -33,8 +33,7 @@ Each challenge is separated in their own individual files complete with the solu
 | Balanced Brackets                                 | https://www.hackerrank.com/challenges/balanced-brackets/problem                              | O(n)            | O(n)                                   | Medium     |
 | Plus Minus                                        | https://www.hackerrank.com/challenges/plus-minus/problem                                     | O(n)            | O(1)                                   | Easy       |
 | Swap Nodes Algo                                   | https://www.hackerrank.com/challenges/swap-nodes-algo/problem                                | O(n)            | O(n)                                   | Medium     |
-| Equal Stacks                                      | https://www.hackerrank.com/challenges/equal-stacks/problem                                   |
-| O(n)                                              | O(1)                                                                                         | Easy            |
+| Equal Stacks                                      | https://www.hackerrank.com/challenges/equal-stacks/problem                                   | O(n)            | O(1)                                   | Easy       |
 | Game of Two Stacks                                | https://www.hackerrank.com/challenges/game-of-two-stacks/problem                             | O(n)            | O(n)                                   | Medium     |  |
 
 ## 3️⃣ Contact Information
