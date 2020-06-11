@@ -2,7 +2,74 @@
 
 #### 1️⃣ Solution Summary
 
-For my first attempt solution I used breadth first search to find the respective paths from the root node to the values assigned to the variables v1 and v2. Ultimately I iterated over the binary tree two different times to find the traversal paths to the variables v1 and v2. The traversal paths are both arrays (containing the node pointers from the root to the target node). After the breadth first search steps I compared the two path arrays and return the last matching pointer node between to two path arrays.
+For my first attempt I literally combined both level order traversal (for the swap nodes logic) and iterative inorder traversal (for returning an array containing the nodes in their respective positions in the binary tree).
+
+As for the tree data structure, I used the passed in indexes array as a substitute since according to the problem's description each index position in the passed in indexes array represents a node and the subarrays under each index position represents the node's children. Below is an example of said structure:
+
+Array representation:
+
+```
+indexes = [
+    # index 0 node 1:
+    [2, 3],
+    # index 1 node 2:
+    [4, 5],
+    # index 2 node 3:
+    [-1, -1],
+    # index 3 node 4:
+    [-1, -1],
+    # index 4 node 5:
+    [-1, -1]
+]
+```
+
+Tree representation:
+
+```
+              __1__
+             /     \
+            2       3
+           / \
+          4   5
+```
+
+As you can see -1 can be interpreted as the terminal nodes (or rather nodes that equal null) and in order for the level order traversal algorithm to work I had to minus each node value passed into the queue by one in order to convert the node's value into the actual node's position in the passed in array.
+
+The swap operation was carried out by the swap_nodes function that takes in a query integar argument and uses the modulo operator to decide whether to swap a level's child nodes. It's important to remember that the there are more than one passed in query value and the queries argument passed into the main swapNodes function is actually an array containing integars.
+
+The following is an example of how the swap_nodes function works and is used:
+
+```
+queries = [1,2]
+
+query = 1
+
+              __1__     swap
+             /     \
+            3       2   swap
+           / \
+          5   4         swap
+
+# Swaps the children of every parent node starting from the first
+# level in the binary tree.
+
+
+query = 2
+
+              __1__
+             /     \
+            3       2   swap
+           / \
+          4   5
+
+# Swaps the children of every parent node who's respective level
+# is a mulitple of 2.
+
+results in inorder traversal orientation:
+4, 3, 5, 1, 2
+```
+
+Lastly an iterative inorder traversal algorithm was used in place of the recursive implementation as a means to bypass the recursive depth error that the final two tests in hackerrank were returning.
 
 ---
 
