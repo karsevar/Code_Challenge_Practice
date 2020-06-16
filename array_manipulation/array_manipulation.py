@@ -27,3 +27,26 @@ def arrayManipulation(n, queries):
     print(array)
 
     return largest_value
+
+
+# optimized solution using the example from:
+# https://www.youtube.com/watch?v=JtJKn_c9lB4
+
+def arrayManipulation(n, queries):
+
+    array = [0] * (n+2) 
+    largest_value = 0 
+
+    for query in queries:
+        
+        array[query[0]] += query[2]
+        array[query[1]+1] -= query[2]
+
+    for index in range(1, len(array)):
+        array[index] += array[index-1]
+
+        if largest_value < array[index]:
+            largest_value = array[index]
+
+    print(array)
+    return largest_value
