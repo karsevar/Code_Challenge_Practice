@@ -83,7 +83,7 @@ Lastly an iterative inorder traversal algorithm was used in place of the recursi
 
 | Title             | Challenge URL                                                | Time Complexity | Space Complexity | Difficulty |
 | ----------------- | ------------------------------------------------------------ | --------------- | ---------------- | ---------- |
-| Swap Nodes [Algo] | https://www.hackerrank.com/challenges/swap-nodes-algo/proble | O(n)            | O(n)             | Medium     |
+| Swap Nodes [Algo] | https://www.hackerrank.com/challenges/swap-nodes-algo/proble | O(mn)           | O(n)             | Medium     |
 
 ## 3️⃣ Time / Space Complexity
 
@@ -92,6 +92,10 @@ Lastly an iterative inorder traversal algorithm was used in place of the recursi
 - O(n)
 
 - Rationale:
+
+  This solution can be defined as having a time complexity of O(n*m), where n is the indexes input (the binary tree in the form of an array with sub-arrays denoting the left and right nodes) and query input (the array containing the swap index queries as integers). The reason for this assessment is that for each integer in the queries array all of the elements in indexes will need to be traversed (checked if the specific node level is a multiple of the query integer). But even with that said, there is an additional O(m*n) operation being performed after the queries for loop. This operation is the inorder_traversal function which needs to traverse through the entire binary tree again to return the inorder orientation of each node after each integer in the queries array.
+
+  In conclusion, the actual time complexity of this algorithm is actually O(mn + mn) but since big O notation is written in short hand the rought estimate is actually O(mn).
 
 ### Space Complexity
 

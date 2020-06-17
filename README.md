@@ -32,7 +32,7 @@ Each challenge is separated in their own individual files complete with the solu
 | Inserting a Node into a Sorted Doubly Linked List | https://www.hackerrank.com/challenges/insert-a-node-into-a-sorted-doubly-linked-list/problem | O(n)            | O(1)                                   | Easy       |
 | Balanced Brackets                                 | https://www.hackerrank.com/challenges/balanced-brackets/problem                              | O(n)            | O(n)                                   | Medium     |
 | Plus Minus                                        | https://www.hackerrank.com/challenges/plus-minus/problem                                     | O(n)            | O(1)                                   | Easy       |
-| Swap Nodes Algo                                   | https://www.hackerrank.com/challenges/swap-nodes-algo/problem                                | O(n)            | O(n)                                   | Medium     |
+| Swap Nodes Algo                                   | https://www.hackerrank.com/challenges/swap-nodes-algo/problem                                | O(nm)           | O(n)                                   | Medium     |
 | Equal Stacks                                      | https://www.hackerrank.com/challenges/equal-stacks/problem                                   | O(n)            | O(1)                                   | Easy       |
 | Game of Two Stacks                                | https://www.hackerrank.com/challenges/game-of-two-stacks/problem                             | O(n)            | O(n)                                   | Medium     |  |
 
