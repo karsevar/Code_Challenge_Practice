@@ -32,15 +32,16 @@ def arrayManipulation(n, queries):
 # optimized solution using the example from:
 # https://www.youtube.com/watch?v=JtJKn_c9lB4
 
-def arrayManipulation(n, queries):
+def arrayManipulationRefactor(n, queries):
 
-    array = [0] * (n+2) 
+    array = [0] * (n) 
     largest_value = 0 
 
     for query in queries:
         
-        array[query[0]] += query[2]
-        array[query[1]+1] -= query[2]
+        array[query[0]-1] += query[2]
+        if query[1] != len(array):
+            array[query[1]] -= query[2]
 
     for index in range(1, len(array)):
         array[index] += array[index-1]
