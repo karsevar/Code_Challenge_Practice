@@ -24,7 +24,7 @@ def gridSearch(G, P):
     while (column_index + len(P)) <= len(G):
         row_index = 0 
 
-        while (row_index + len(P)) < len(G[0]):
+        while (row_index + len(P)) <= len(G[0]):
             # print(G[column_index][row_index:row_index + len(P[0])])
 
             if P[0] == G[column_index][row_index:row_index + len(P[0])]:
@@ -47,3 +47,19 @@ def gridSearch(G, P):
         column_index += 1
         
     return "NO"
+
+# 4 6
+
+# 123412
+
+# 561212
+
+# 123612
+
+# 781234
+
+# 2 2
+
+# 12
+
+# 34
