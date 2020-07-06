@@ -27,3 +27,27 @@ def findDigits(n):
         n = n // 10 
 
     return counter
+
+def findDigitsSimple(n):
+    # more of a simplistic solution without the use of divisors and numerous 
+    # modulo operators. 
+
+    # I saw that all the tutorial's solution was doing was using division and 
+    # modulo symbols to increment through the passed in integer to check if each
+    # integer is divisable by the passed in n value. 
+
+    # Through converting the n argument to a string and using a for loop to 
+    # increment by one digit at a time you can pretty much have the same solution
+    # with identical characteristics with only a additional O(n) time complexity 
+    # increase.
+
+    num_string = str(n)
+    counter = 0 
+
+    for num in num_string:
+        if num != '0' and n % int(num) == 0:
+            counter += 1 
+    
+
+    return counter
+    
