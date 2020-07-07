@@ -56,16 +56,6 @@ def magicSquares(n=3):
             row += 1 
             col -= 2
 
-            if row == -1 and col == n:
-                row = 0 
-                col = n - 2
-
-            if row == -1:
-                row = n - 1
-
-            if col == n:
-                col = 0 
-
 
         # print('row', row)
         # print('col', col)
@@ -79,4 +69,5 @@ def magicSquares(n=3):
 
     return magicArray
 
-print(magicSquares())
+
+print(magicSquares(7))
