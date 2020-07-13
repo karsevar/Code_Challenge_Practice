@@ -70,4 +70,14 @@ def magicSquares(n=3):
     return magicArray
 
 
-print(magicSquares(7))
+print(magicSquares(3))
+
+array = [1,2,3,4]
+
+def reverseList(array):
+	if len(array) > 0:
+		print(array[-1])
+		array.pop()
+		reverseList(array)
+
+reverseList(array)
