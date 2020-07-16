@@ -1,3 +1,5 @@
+import math
+
 def squares(a, b):
     print(math.sqrt(a))
     print(math.sqrt(b))
