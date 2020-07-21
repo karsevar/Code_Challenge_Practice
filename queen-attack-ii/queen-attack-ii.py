@@ -53,15 +53,37 @@ def queensAttack(n, k, r_q, c_q, obstacles):
 
         if c_q == obstacle[1]:
             if r_q < obstacle[0]:
-                up_move = (obstacle[0] - r_q) - 1
+                if up_move > (obstacle[0] - r_q) - 1:
+                    up_move = (obstacle[0] - r_q) - 1
             else:
-                down_move = (r_q - obstacle[0]) - 1
+                if down_move > (r_q - obstacle[0]) - 1:
+                    down_move = (r_q - obstacle[0]) - 1
         elif r_q == obstacle[0]:
             if c_q < obstacle[1]:
-                right_move = (obstacle[1] - c_q) - 1
+                if right_move > (obstacle[1] - c_q) - 1:
+                    right_move = (obstacle[1] - c_q) - 1
             else:
-                left_move = (c_q - obstacle[1]) - 1
-                
+                if left_move > (c_q - obstacle[1]) - 1:
+                    left_move = (c_q - obstacle[1]) - 1
+        elif r_q < obstacle[0]: 
+            if c_q < obstacle[1]:
+                if (obstacle[0] - r_q) == (obstacle[1] - c_q):
+                    if up_right_move > (obstacle[0] - r_q) - 1: 
+                        up_right_move = (obstacle[0] - r_q) - 1 
+            else:
+                if (obstacle[0] - r_q) == (c_q - obstacle[1]):
+                    if up_left_move > (obstacle[0] - r_q) - 1:
+                        up_left_move = (obstacle[0] - r_q) - 1
+        elif r_q > obstacle[0]:
+            if c_q < obstacle[1]:
+                if (r_q - obstacle[0]) == (obstacle[1] - c_q):
+                    if down_right_move > (r_q - obstacle[0]) - 1:
+                        down_right_move = (r_q - obstacle[0]) - 1
+            else:
+                if (r_q - obstacle[0]) == (c_q - obstacle[1]):
+                    if down_left_move > (r_q - obstacle[0]) - 1:
+                        down_left_move = (r_q - obstacle[0]) - 1
+
     print('up', up_move, 'down', down_move, 'left', left_move, 'right', right_move)
 
-    return up_move + down_move + right_move + left_move + up_left_move + up_right_move + down_left_move + down_right_move
+    return up_move + down_move + right_move + left_move + up_left_move + up_right_move + down_left_move + down_right_move 
