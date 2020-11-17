@@ -34,7 +34,7 @@ def appendAndDelete(s, t, k):
         diffT = len(t[divergence:])
         print('sum of divergence', diffS + diffT)
         
-        if diffS + diffT > k:
+        if diffS + diffT > k and (diffS + diffT) % 2 != k % 2:
             return 'No'
         else:
             return 'Yes'
