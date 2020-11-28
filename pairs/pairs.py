@@ -26,3 +26,26 @@ def pairs(k, arr):
                 target_counter += 1
                 
     return target_counter
+
+
+# solution with O(n) time complexity:
+def optimized_pairs(k, arr):
+    pairs_dict = {}
+    pairs_counter = 0 
+    
+    # create a for loop that will iterate through the input array 
+        # check if the current index - k or current index + k is in 
+        # the hash table 
+            # if so iterate the counter by one 
+            # if not add the current index to the hashtable 
+            
+    for current_value in arr:
+        if (current_value - k) in pairs_dict:
+            pairs_counter += 1
+        if (current_value + k) in pairs_dict:
+            pairs_counter += 1
+            
+        pairs_dict[current_value] = 1
+    print('pairs dictionary', pairs_dict)
+            
+    return pairs_counter
