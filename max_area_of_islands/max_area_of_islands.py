@@ -1,5 +1,5 @@
 class Solution:
-    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+    def maxAreaOfIsland(self, grid):
         # it seems that this problem is a combination of two other problems 
         # the island counting problem and the perimeter counting problem 
         # the main issue with combining these two solutions is that the time 
