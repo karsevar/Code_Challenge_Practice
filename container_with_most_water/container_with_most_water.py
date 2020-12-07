@@ -36,7 +36,7 @@ class Solution:
 # the following solution is only a simplified version of the brute force 
 # solution above. time complexity in the worst case can be calculated at 
 # o(n)
-class Solution:
+class SolutionRefactored:
     def maxArea(self, height):
         
         # the hint said to start with a container that takes up the entire array 
