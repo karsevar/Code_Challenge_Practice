@@ -1,3 +1,4 @@
+# iterative three sum solution with a lot of help from the video: https://www.youtube.com/watch?v=jzZsG8n2R9A&t=544s
 class Solution:
     def threeSum(self, nums):
         # according to the hints make sure to keep the first value in the 
