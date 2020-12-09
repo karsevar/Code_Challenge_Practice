@@ -1,5 +1,5 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+    def generateParenthesis(self, n):
         
         # will need to create a recursion function that will help with the 
         # different combinations required to create well formed arrays.
