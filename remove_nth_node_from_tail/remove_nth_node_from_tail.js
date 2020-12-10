@@ -1,9 +1,9 @@
 var removeNthFromEnd = function (head, n) {
   // create two pointers both initialized to the head node
   // first loop through the linked list to the nth node using
-  fast_node = head;
-  slow_node = head;
-  past_node = null;
+  let fast_node = head;
+  let slow_node = head;
+  let past_node = null;
 
   for (let i = 0; n > i; i++) {
     fast_node = fast_node.next;
