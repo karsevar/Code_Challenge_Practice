@@ -1,4 +1,4 @@
-// Best try bruteforce method.
+// Best try bruteforce method. Only passes 77/177 test cases.
 function merge(intervals: number[][]): number[][] {
     // first we will most likely have to sort the array according to the first index of each interval subarray.
 
@@ -76,4 +76,34 @@ function merge(intervals: number[][]): number[][] {
 
 
     return resIntervals
+};
+
+
+// Made this solution while following the editorial peudo code
+function mergeEditorial(intervals: number[][]): number[][] {
+    // editorial steps:
+    // Sort intervals by starting time.
+
+    // Initialize a prev interval.
+
+    // Iterate through the intervals:
+
+    // If current interval overlaps with prev, merge them by updating the end time.
+    // Else, add prev to result and update prev.
+    // After loop ends, add the last prev.
+    intervals.sort((a, b) => a[0] - b[0])
+    let prev: Array<number> = intervals[0]
+    const res: Array<Array<number>> = []
+
+    for (let i: number = 1; i < intervals.length; i++) {
+        if (prev[1] >= intervals[i][0]) {
+            prev = [prev[0], Math.max(prev[1], intervals[i][1])]
+        } else {
+            res.push(prev)
+            prev = intervals[i]
+        }
+    }
+
+    res.push(prev)
+    return res
 };
