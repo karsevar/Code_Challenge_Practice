@@ -51,3 +51,49 @@ class Solution:
                             y_index += 1
                         
             return solutions
+        
+    def threeSumTwoPointer(self, nums: List[int]) -> List[List[int]]:
+        # according to an editorial you can use the normal two pointer algorithm to solve this. I believe that perhaps for the two pointer solution to work we will have to sort the array. A novel solution might be to set the i index through just having an outer for loop and the inner nested loop will be simply a while loop that will calculate the sum of the j and k indexes. This will effectively keep the inner loop's time complexity to O(n^2)
+
+        # first sort the input nums array
+
+        # initialize an empty output solutions array
+
+        # setup a conditional that will return the solutions array if the length of the nums array is less than 3 
+        # create a for loop that will set the i index and terminate at len(nums) - 2
+        # initialize left pointer variable to i + 1
+        # initialize right pointer variable to end of the nums array
+
+        # create a while loop that will terminate when left and right pointers collide
+        # if i + j + k indexes equals zero append the solutions array with the three values in an array
+        # if the sum is greater than zero move the right pointer down one
+        # if the sum is less than zero move the left pointer up one
+
+
+        nums.sort()
+        print(nums)
+
+        solutions = []
+
+        if len(nums) <= 2:
+            return solutions
+
+        for i in range(len(nums) - 2):
+            left_pointer = i + 1
+            right_pointer = len(nums) - 1
+            while True:
+                if left_pointer == right_pointer:
+                    break
+                
+                current_sum = nums[i] + nums[left_pointer] + nums[right_pointer]
+                if current_sum == 0:
+                    subsolution_array = [nums[i], nums[left_pointer], nums[right_pointer]]
+                    if subsolution_array not in solutions:
+                        solutions.append(subsolution_array)
+
+                if current_sum < 0:
+                    left_pointer += 1
+                else:
+                    right_pointer -= 1
+
+        return solutions
