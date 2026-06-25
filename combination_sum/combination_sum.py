@@ -37,3 +37,43 @@ class Solution:
                     
         recursion_helper(candidates, target)
         return combinations
+    
+    
+class SolutionRevisited:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        # I can most likely solve this problem using almost the same logic as combination sum ii with the main difference being that I'm able to count the same number multiple times. 
+
+        # create a solutions array
+
+        # create a function that will candidates, target, state, and solutions as arguments.
+
+        # return solutions array
+
+        solutions = []
+
+        self.backtrack_helper(candidates, target, solutions, [])
+
+        return solutions
+
+
+    def backtrack_helper(self, candidates: List[int], target: int, solutions: List[List[int]], state: List[int]):
+        # base case: 
+        ## Check if target equals zero (each iteration of the recursion loop will effectively subtract candidates[choice] from the running target value)
+        ## if true add state to the solutions array
+        ## if less than target
+        ### create a for loop that through the candidates array
+        ### add candidate[choice] to state
+        ### call backtrack_helper with updated state and updated target (target - candidates[choice])
+        ### pop candidate[choice] from bottom of the state array
+
+        if target == 0:
+            sorted_state = sorted(state[:])
+            if sorted_state not in solutions:
+                solutions.append(sorted_state)
+            return
+
+        elif target > 0:
+            for choice in candidates:
+                state.append(choice)
+                self.backtrack_helper(candidates, target - choice, solutions, state)
+                state.pop()
