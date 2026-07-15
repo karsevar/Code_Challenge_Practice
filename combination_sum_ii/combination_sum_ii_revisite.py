@@ -95,3 +95,70 @@ class Solution:
             while choice + 1 < n and candidates[choice] == candidates[choice + 1]:
                 choice += 1
             self.backtrack_helper(candidates, choice + 1, n, target, state, solutions)
+
+
+class SolutionWithCache:
+    # it seems that I didn't have to use the i == i - 1 skip conditional in order to pass all of the test cases. Though this solution is the most optimal and I only used a path cache in order to pass the last 4 test cases. 
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+
+        # in this case the values in the input candidates array are not unique. This means that I will need to keep track of the index position 
+
+        # create a results array
+        # create a recursion helper that will take start index, results, candidates, state, and target. I think I can decrease target with each index of candidate.
+        # return results
+
+        visited = set()
+        results = []
+        self.combination_helper([], 0, results, sorted(candidates), target, visited)
+        return results
+
+    def combination_helper(self, state: List[int], start: int, results: List[List[int]], candidates: List[int], target: int, visited):
+        # base case will be if target is less than or equal to zero
+        # if equal to zero add state to results array
+        # if less than zero than just simply return null
+
+        # create a for loop that will start at starting index and end at the length of the candidates array. 
+        # Intition is that perhaps the loop will simply go through the array without repeating the same values in the computation state array.
+
+        # add candidates[index] to state
+        # recursively call combination_helper with index + 1 value and decrease target value by candidate[index]
+        # print("start: ", start, " target: ", target, " results: ", results)
+        state_copy = state[:]
+        state_str = str(state_copy)
+
+        if state_str not in visited:
+            visited.add(state_str)
+            if target == 0:
+                results.append(state[:])
+                return 
+            if target < 0:
+                return 
+
+            for i in range(start, len(candidates)):
+                state.append(candidates[i])
+                self.combination_helper(state, i+1, results, candidates, target - candidates[i], visited)
+                state.pop()
+
+
+# This solution adds a conditional that prunes the decision tree so that we don't have to use a visisted 
+# set as a cache to remove duplicate values. Now this solution beats 56 percent of submissions for time 
+# complexity.
+class SolutionTreePruneConditional:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        results = []
+        self.combination_helper([], 0, results, sorted(candidates), target)
+        return results
+
+    def combination_helper(self, state: List[int], start: int, results: List[List[int]], candidates: List[int], target: int):
+        if target == 0:
+            results.append(state[:])
+            return 
+        if target < 0:
+            return 
+
+        for i in range(start, len(candidates)):
+            if (i > start and candidates[i] == candidates[i-1]):
+                continue
+            state.append(candidates[i])
+            self.combination_helper(state, i+1, results, candidates, target - candidates[i])
+            state.pop()

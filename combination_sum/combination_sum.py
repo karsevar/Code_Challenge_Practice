@@ -77,3 +77,47 @@ class SolutionRevisited:
                 state.append(choice)
                 self.backtrack_helper(candidates, target - choice, solutions, state)
                 state.pop()
+
+
+class SolutionWithCache:
+    # not the most efficient solution as it only beats 5 percent of all submissions. The inefficiency is due to not cache all the possible paths that the algorithm processed thus we are revisited paths that have already been explored. 
+
+    # easy fix is to use a set as a cache for previously visited paths in order to decrease time complexity.
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        # to begin I will use the same principles as the other backtrack problems where the following pattern is utilized.
+        # for loop through the choices in the candidates array
+        # add choice to state array
+        # call recursive function with updated state
+        # remove choice from state
+
+        # what should the conditional be within the base case?
+        # To start the unoptimized version of this algorith would be to add state and check if it equals target or is greater than the target.
+
+        # visited set
+        # example of visited set: set(" ", "1 2")
+
+
+        results = []
+        # this modification did speed the algorithm up to 95 ms from 2000 ms. Though the time complexity is not at the same level as some of the other submissions.
+        visited = set()
+        self.combination_sum_helper(visited, [], candidates, target, results)
+
+        return results
+
+    def combination_sum_helper(self, visited, state, candidates, target, results):
+        # print("state: ", state, " target: ", target, " results: ", results, " visited: ", visited)
+        sorted_state = sorted(state[:])
+        str_state = str(sorted_state)
+
+        if str_state not in visited:
+            visited.add(str_state)
+            if target < 0:
+                return
+            if target == 0:
+                results.append(sorted_state)
+                return
+
+            for choice in candidates:
+                state.append(choice)
+                self.combination_sum_helper(visited,state, candidates, target - choice, results)
+                state.pop()

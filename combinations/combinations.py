@@ -86,4 +86,22 @@ class SolutionEditorial2:
 
         dfs(1)
         return ans
+    
+class SolutionSecondAttempt:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        results = []
+        self.recursion_helper(1, n, [], k, results)
+        return results
+
+
+    def recursion_helper(self, start, n, state, k, results):
+        if len(state) == k:
+            results.append(state[:])
+            return 
+
+
+        for choice in range(start, n+1):
+            state.append(choice)
+            self.recursion_helper(choice +1, n, state, k, results)
+            state.pop()
         

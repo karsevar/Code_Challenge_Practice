@@ -45,3 +45,43 @@ class Solution:
                 state.append(choice)
                 self.backtrack_helper(state, nums, visited, solutions)
                 state.pop()
+
+# first attempt. It really isn't the most optimized solution since I'm going through each individual combination multiple times. Most likely a visited cache will optimize this a little more with some sacrefice to space complexity.
+class SolutionAttemptTwo:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        # since the order and size of the permutations matter in this exercise I believe that I can use the same method as the combinations exercise with slight modifications. 
+
+        # namely the base case should check if the subset size equals the size of the passed in nums array and if the permutation is already represented in the output results array.
+
+        # create results array
+
+        # call recursive function that will take results, nums, and state as arguments. 
+
+        # return results
+
+        # create a visited set where we can contain all visited paths.
+        # visited example: set(" ", "2 3")
+
+        # print(" ".join([str(int_str) for int_str in []]))
+        # adding a set as a cache only increased the speed of the algorithm about 20 percent compared to my previous method. At least I was able to remove the state not in results check which is a good benefit of this modification.
+
+        results = []
+        visited = set()
+        self.permute_helper(visited, [], nums, results)
+        return results
+
+    def permute_helper(self, visited, state: List[int], nums: List[int], results: List[List[int]]):
+        # print(" state: ", state, " visited: ", visited)
+        path = " ".join([str(int_str) for int_str in state])
+
+        if path not in visited:
+            visited.add(path)
+            if len(state) == len(nums):
+                results.append(state[:])
+                return
+
+            for choice in range(len(nums)):
+                if nums[choice] not in state:
+                    state.append(nums[choice])
+                    self.permute_helper(visited, state,  nums, results)
+                    state.pop()
