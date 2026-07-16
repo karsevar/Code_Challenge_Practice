@@ -49,6 +49,49 @@ class Solution:
             maximum_substring = current_counter
 
         return maximum_substring
+    
+
+# simplified logic with the same sliding window principles except I used a queue to keep track of the 
+# left pointer. 
+class SolutionQueue:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        # the most straightforward way to solve this is to have two specific counters: one for counting the current consecutive ones for each iteration, another counter for keeping track of the number of zeros that were converted to ones (this will be the shrinking criterion) 
+        # also perhaps adding a pointer for the left part of the subarray might be a good idea as well. 
+
+        # also I think that perhaps using a queue might be a better idea than using a left pointer as I can shrink the queue and add to it according to the expand and shrink criterion.
+
+        # create a convert zero to one counter this will be initialized to 0 
+        # create a maximum length variable initialize it to zero 
+
+        # create a for loop that will start at index zero and end at the end of the input nums array.
+        # check if current index is a one
+        # if true add index to queue array 
+        # if false check 
+        # increment zero counter by one and add the index to queue array 
+        # if zero counter is greater than k 
+        # shrink the queue through a while loop until zero counter is less than k
+        # check if removed element is a zero if so decriment zero counter
+
+        maximum_length = 0
+        zero_counter = 0
+        queue = []
+
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                queue.append(nums[i])
+            else:
+                queue.append(nums[i])
+                zero_counter += 1
+
+                while zero_counter > k:
+                    head_value = queue.pop(0)
+                    if head_value == 0:
+                        zero_counter -= 1
+
+            if maximum_length < len(queue):
+                maximum_length = len(queue)
+
+        return max(maximum_length, len(queue))
 
         
         
