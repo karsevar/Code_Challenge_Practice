@@ -1,5 +1,5 @@
 # brutefore method only passes 43 out of 65 test cases. Will need to think about a possible cache for words that are similar to 
-# one another to decrease time complexity.
+# one another to decrease time complexity. First hard challenge attempt.
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         # this looks almost like the word search 1 problem I just finished.
