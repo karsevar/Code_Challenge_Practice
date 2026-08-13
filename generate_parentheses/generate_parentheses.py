@@ -90,3 +90,55 @@ class SolutionRevisit:
             state.append(")")
             self.generate_recursion(state, closing_n - 1, opening_n, results)
             state.pop()
+
+class SolutionRevisit2:
+    # Understandably this isn't really the best solution as I am looping through an array that carries the two possible 
+    # parentheses and calling the recursive function for every possible combination. In addition, I have manual edge cases that 
+    # handle situations that will naturally create instances of strings that carry unequal parentheses.
+    def generateParenthesis(self, n: int) -> List[str]:
+        # the most straightforward way is to most likely create counters for both closing and opening parentheses. 
+        # The main problem is how to deside what is a malformed parentheses string and what isn't?
+
+        # create a results array that will carry all the correctly formed parentheses strings
+
+        # create a recursive function that will take in state, closing parentheses counter, opening parentheses counter, results.
+
+        # return results
+
+        results = []
+
+        self.recursive_helper(
+            [],
+            n,
+            n,
+            results
+        )
+
+        return results
+
+    def recursive_helper(self, state: List[str], closing_counter: int, opening_counter: int, results: List[str]):
+        # print("state: ", state, " opening_counter: ", opening_counter, " closing_counter: ", closing_counter)
+        if opening_counter == 0 and closing_counter == 0:
+            results.append("".join(state[:]))
+            return
+
+        if opening_counter < 0 or closing_counter < 0:
+            return
+        
+        if opening_counter > 0 or closing_counter > 0:
+            for choice in ["(", ")"]:
+                if opening_counter == 0 and choice == "(":
+                    continue
+                if state == [] and choice == ")":
+                    continue
+                if closing_counter == opening_counter and choice == ")":
+                    continue
+                state.append(choice)
+                self.recursive_helper(
+                    state,
+                    closing_counter - 1 if choice == ")" else closing_counter,
+                    opening_counter - 1 if choice == "(" else opening_counter,
+                    results
+                )
+                state.pop()
+        
