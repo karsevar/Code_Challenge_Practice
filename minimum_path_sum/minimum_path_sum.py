@@ -42,3 +42,32 @@ class Solution:
         )
 
         return cache[(j, i)]
+
+
+class SolutionTabulation:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        # keep in mind that I'm only allowed to move down and right for each given move. This means that I can simply use the recursion method much like the unique path problem with the robot moving down and right each turn.
+
+        dp = [[0 for _ in range(len(grid[0]))] for _ in range(len(grid))]
+
+        dp[0][0] = grid[0][0]
+
+        if len(grid) == 1 and len(grid[0]) == 1:
+            return grid[0][0]
+
+        if len(grid) == 2 and len(grid[0]) == 1:
+            return grid[0][0] + grid[1][0]
+
+        if len(grid) == 1 and len(grid[0]) == 2:
+            return grid[0][0] + grid[0][1]
+
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i - 1 < 0:
+                    dp[i][j] = grid[i][j] + dp[i][j-1]
+                elif j - 1 < 0:
+                    dp[i][j] = grid[i][j] + dp[i-1][j]
+                else:
+                    dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
+
+        return dp[len(grid)-1][len(grid[0])-1]

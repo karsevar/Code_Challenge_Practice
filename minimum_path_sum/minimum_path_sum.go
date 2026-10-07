@@ -38,3 +38,33 @@ func recursionHelper(j int, i int, grid [][]int, cache map[[2]int]int) int {
 
 	return cache[dataPoint]
 }
+
+func minPathSumTabulation(grid [][]int) int {
+	dp := make([][]int, len(grid))
+
+	for i := range dp {
+		dp[i] = make([]int, len(grid[0]))
+	}
+
+	dp[0][0] = grid[0][0]
+
+	for i := 0; i < len(grid); i++ {
+		for j := 0; j < len(grid[0]); j++ {
+			if i-1 < 0 && j-1 < 0 {
+				continue
+			} else if i-1 < 0 {
+				dp[i][j] = grid[i][j] + dp[i][j-1]
+			} else if j-1 < 0 {
+				dp[i][j] = grid[i][j] + dp[i-1][j]
+			} else {
+				if dp[i-1][j] > dp[i][j-1] {
+					dp[i][j] = grid[i][j] + dp[i][j-1]
+				} else {
+					dp[i][j] = grid[i][j] + dp[i-1][j]
+				}
+			}
+		}
+	}
+
+	return dp[len(grid)-1][len(grid[0])-1]
+}
