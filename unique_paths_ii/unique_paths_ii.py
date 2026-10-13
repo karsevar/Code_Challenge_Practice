@@ -53,3 +53,40 @@ class Solution:
 
         cache[(j, i)] = rightMove + downMove
         return cache[(j, i)]
+
+
+class SolutionTabulation:
+    # okay so through tabulation we can think of this problem in much the same way as unique paths 1. In that we are looking for all the unique paths the robot can take to reach grid[m-1][n-1]. The only difference is the need to label the obstruction space as 0 since we want to discount it within the tally of possible paths the robot can take.
+
+    # time complexity can be conceptualized as O(n*m) where we are only looping through the rows and columns of the input obstacleGrid variable
+    # space complexity can be conceptualized as O(n*m) as well since we are creating a dp array that mirrors the dimensions of the input obstacleGrid array.
+    def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
+        # create a dp array that is of len(obstacleGrid) rows and len(obstableGrid[0]) columns. 
+
+        # create a nested for loop
+        # loop through rows of obstacleGrid
+        # loop through the columns of obstableGrid
+        # if obstableGrid[i][j] == 1 then mark the space as zero.
+        # if len(obstacleGrid)-1 == i then mark the space as 1
+        # if len(obstableGrid[0])-1 == j then mark the space as 1
+        # else mark the space as dp[i-1][j] + dp[i][j-1]
+
+        n = len(obstacleGrid)
+        m = len(obstacleGrid[0])
+
+        dp = [[0 for _ in range(m)] for _ in range(n)]
+
+        for i in range(n):
+            for j in range(m):
+                if obstacleGrid[i][j] == 1:
+                    dp[i][j] = 0
+                elif i == 0 and j == 0:
+                    dp[i][j] = 1
+                elif i == 0:
+                    dp[i][j] = dp[i][j-1]
+                elif j == 0:
+                    dp[i][j] = dp[i-1][j]
+                else:
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1]
+
+        return dp[n-1][m-1]
