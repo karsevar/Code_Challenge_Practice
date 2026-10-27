@@ -62,3 +62,51 @@ func recursiveHelper(state []int, treeNode *TreeNode, targetSum int, results *[]
 		}
 	}
 }
+
+func pathSumBackTrack(root *TreeNode, targetSum int) [][]int {
+	results := [][]int{}
+
+	backtrackHelper(
+		root,
+		0,
+		targetSum,
+		&results,
+		[]int{},
+	)
+
+	return results
+}
+
+func backtrackHelper(root *TreeNode, currentSum int, targetSum int, results *[][]int, state []int) {
+	if root == nil {
+		return
+	}
+
+	currentSum += root.Val
+	state = append(state, root.Val)
+
+	if root.Left == nil && root.Right == nil {
+		if currentSum == targetSum {
+			copyState := append([]int(nil), state...)
+			*results = append(*results, copyState)
+		}
+	} else {
+		backtrackHelper(
+			root.Left,
+			currentSum,
+			targetSum,
+			results,
+			state,
+		)
+
+		backtrackHelper(
+			root.Right,
+			currentSum,
+			targetSum,
+			results,
+			state,
+		)
+	}
+
+	state = state[:len(state)-1]
+}

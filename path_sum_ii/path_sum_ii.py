@@ -41,3 +41,53 @@ class Solution:
                 self.recursive_helper([*state, treeNode.val], treeNode.left, targetSum, results)
             if treeNode.right:
                 self.recursive_helper([*state, treeNode.val], treeNode.right, targetSum, results)
+
+
+class SolutionBackTracking:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        # the most straightforward way is to use recursion and backtracking with the same principles as depth first search. 
+
+        # the base case for the recursive function will be if the current node is null (this means that we reached the end of the tree) and the current sum is equal to the target sum. If these conditions are met than we can add the path values to the outgoing results array. 
+        # This problem is a little more simpler than initially thought since we only need to calculate the sum from the root node to a leaf node that lives either to the right or to the left.
+
+        results = []
+        if root:
+            self.recursion_helper(
+                root,
+                0,
+                targetSum,
+                [],
+                results,
+            )
+        return results
+
+
+
+
+    def recursion_helper(self, root: Optional[TreeNode], currentSum: int, targetSum: int, state: List[int], results: List[List[int]]):
+        if root is None:
+            return 
+
+        state.append(root.val)
+        currentSum += root.val
+
+        if root.left == None and root.right == None:
+            if currentSum == targetSum:
+                results.append(state.copy())
+
+        else:
+            self.recursion_helper(
+                root.left,
+                currentSum,
+                targetSum,
+                state,
+                results,
+            )
+            self.recursion_helper(
+                root.right,
+                currentSum,
+                targetSum,
+                state,
+                results,
+            )
+        state.pop()
