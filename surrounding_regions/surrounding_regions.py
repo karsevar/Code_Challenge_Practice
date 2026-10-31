@@ -62,5 +62,3 @@ class Solution:
             neighbors.append((currentCell[0], currentCell[1]+1))
 
         return neighbors
-
-        
